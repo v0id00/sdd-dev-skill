@@ -1,0 +1,42 @@
+{
+  "name": "sdd-skills",
+  "version": "0.1.0",
+  "description": "Spec-driven development skills for agentic coding tools (Claude Code, opencode, Codex, Hermes, Gemini CLI, Cursor) with a zero-dependency CLI.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "sdd": "bin/sdd.mjs"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "templates",
+    "docs",
+    "tests",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test 'tests/*.test.mjs'"
+  },
+  "keywords": [
+    "spec-driven-development",
+    "spec-first",
+    "agent-skills",
+    "claude-code",
+    "opencode",
+    "codex",
+    "hermes",
+    "gemini-cli",
+    "cursor",
+    "sdd"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/v0id00/sdd-dev-skill.git"
+  },
+  "dependencies": {}
+}
