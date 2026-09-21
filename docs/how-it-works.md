@@ -78,7 +78,7 @@ Decisions leak. In a real project, the decision *"no `.env` file, secrets live i
 So each round ends with a cascade step, not a courtesy grep:
 
 ```bash
-rg "<the phrase or identifier the decision invalidated>" specs/ AGENTS.md CLAUDE.md docs/
+grep -rn "<phrase or identifier the decision invalidated>" specs/ AGENTS.md CLAUDE.md docs/
 sdd lint --verbose      # cascade-leak, broken-ref, index-stale
 sdd index               # the index is generated, keep it truthful
 ```

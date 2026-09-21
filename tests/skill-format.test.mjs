@@ -71,6 +71,31 @@ test('skills stay tool-agnostic and never self-approve', async () => {
   }
 })
 
+test('shipped content is English-only and shell-portable', async () => {
+  const roots = [
+    path.join(ROOT, 'skills'), path.join(ROOT, 'templates'),
+    path.join(ROOT, 'docs'), path.join(ROOT, 'README.md'),
+  ]
+  const files = []
+  const walk = async (p) => {
+    const st = await fs.stat(p)
+    if (st.isDirectory()) for (const e of await fs.readdir(p)) await walk(path.join(p, e))
+    else if (/\.(md|mjs|json|txt)$/.test(p)) files.push(p)
+  }
+  for (const r of roots) await walk(r)
+  assert.ok(files.length >= 20, `expected the shipped docs/templates, found ${files.length}`)
+
+  for (const f of files) {
+    const rel = path.relative(ROOT, f)
+    const text = await fs.readFile(f, 'utf8')
+    // Turkish letters in prose would ship a half-translated library; the only
+    // exception is bin/sdd.mjs, which transliterates Turkish titles into slugs
+    assert.doesNotMatch(text, /[çğıöşüÇĞİÖŞÜ]/, `${rel}: non-English (Turkish) characters in shipped content`)
+    // ripgrep is not installed everywhere; the instructions must work with grep
+    assert.doesNotMatch(text, /(^|[^a-zA-Z_-])rg\s/, `${rel}: uses ripgrep instead of plain grep`)
+  }
+})
+
 test('the Codex skill-list budget is respected', async () => {
   const skills = await bundle()
   const budget = skills.reduce((a, { name, raw }) => {

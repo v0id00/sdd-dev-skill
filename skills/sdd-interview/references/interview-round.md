@@ -29,12 +29,12 @@ Rounds of **≤5 decisions**. Recommendation first. The user answers a whole rou
 A1, B2, C1, and for the critical one: <your call>
 ```
 
-Shortcuts: `öneri` / `default` = take the recommendation for that item; `sen karar ver` = you decide and record the reasoning in the spec's Decision Log.
+Shortcuts: `default` = take the recommendation for that item; `you decide` = the agent decides and records the reasoning in the spec's Decision Log.
 
 ### After the answers
 
 1. Patch the spec (and templates/plans that cite it) in one pass.
-2. **Cascade**: grep for the phrases the decision invalidated — `rg "<term>" specs/ AGENTS.md docs/`.
+2. **Cascade**: search for the phrases the decision invalidated — `grep -rn "<term>" specs/ AGENTS.md CLAUDE.md docs/ 2>/dev/null` (plain `grep`, so it works anywhere; add `-i` for case-insensitive).
 3. Record each decision in the spec's Decision Log (date, decision, why).
 4. Deferred items go to `TODO.md` with one line of context.
 5. Only then open the next round. Never accumulate unapplied rounds.

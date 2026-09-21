@@ -34,7 +34,7 @@ Interrogate a `Draft` spec until nothing important is ambiguous. Ask a lot of qu
 2. List every assumption the spec silently makes: defaults, thresholds, storage, error paths, permissions, concurrency, migration, backwards compatibility, observability, cost. Write the list out, even the items you expect the user to shrug at.
 3. Group the open decisions into thematic rounds of at most 5 items. Label items A, B, C...; give each 2-4 concrete options; mark exactly one option `— *recommended*` with a one-line reason, using the format of `references/interview-round.md`.
 4. Inside each round mark 1-3 decisions as **critical** and demand a definite answer for those: name the item and why it cannot be defaulted (it shapes the data model, a public contract, or the migration path).
-5. Tell the user the answering shortcuts: `default` / `öneri` takes the recommendation for that item; `you decide` makes you choose and record the reason in the spec's Decision Log.
+5. Tell the user the answering shortcuts: `default` takes the recommendation for that item; `you decide` makes you choose and record the reason in the spec's Decision Log.
 6. Wait for the whole round, then apply it in one pass: patch the spec, add the changed Acceptance Criteria, then **cascade** — search the repo and the other specs for the phrases the decision invalidated (the old term, file name, config key, default) and fix or cite each hit.
 7. Record every decision in the spec's `## Decision Log` (date, decision, why). Move deferred items to `TODO.md` with one line of context. Bump `- **Updated:**`. Run `sdd lint --verbose` and `sdd index`.
 8. Only then open the next round. Never hold two unapplied rounds at once.
