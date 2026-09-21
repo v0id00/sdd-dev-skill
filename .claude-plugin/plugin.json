@@ -1,0 +1,13 @@
+{
+  "name": "sdd",
+  "version": "0.1.0",
+  "description": "Spec-driven development: bootstrap specs/, author and review them, apply them to code, verify acceptance criteria with real evidence.",
+  "author": {
+    "name": "Berkay Günaydın",
+    "url": "https://github.com/v0id00"
+  },
+  "homepage": "https://github.com/v0id00/sdd-dev-skill",
+  "repository": "https://github.com/v0id00/sdd-dev-skill",
+  "license": "MIT",
+  "keywords": ["spec-driven-development", "specs", "workflow", "review", "verification"]
+}

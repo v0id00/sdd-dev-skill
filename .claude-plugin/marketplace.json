@@ -1,0 +1,18 @@
+{
+  "name": "sdd-dev-skill",
+  "owner": {
+    "name": "Berkay Günaydın",
+    "url": "https://github.com/v0id00"
+  },
+  "plugins": [
+    {
+      "name": "sdd",
+      "source": "./",
+      "description": "Spec-driven development skills: init, discover, spec, interview, review, update, plan, apply, verify, status, lint.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Berkay Günaydın"
+      }
+    }
+  ]
+}
