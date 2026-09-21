@@ -33,7 +33,7 @@ Produce the task breakdown for one `Approved` spec, with every task traced to th
 2. Read the spec in full, then the files it names under `## Interfaces`, then skim the current implementation so sizes are honest.
 3. Enumerate tasks in dependency order. For each task record: what changes, which files or layers, the AC ids it satisfies, the command that verifies it, and a size (S/M/L). No time estimates.
 4. Add the sequencing risks: migrations and their rollback, contract and interface changes, feature flags (default OFF for a half-finished capability), tests to write first, and anything that must ship before or after something else.
-5. Write the plan with `authority: spec NNNN` as an explicit line at the top. Prefer a plans path outside `specs/` when `AGENTS.md` names one — the `sdd` linter treats every `NNNN-*.md` inside `specs/` as a spec and will report the plan as a duplicate id or a stray file. Only if the project has no plans path, write `specs/NNNN-slug.plan.md` next to the spec and say so in your report.
+5. Write the plan at `specs/plans/NNNN-slug.plan.md` with `authority: spec NNNN` as an explicit line at the top. Use `AGENTS.md`'s configured plan path instead when it names one. Never write the plan flat next to the spec as `specs/NNNN-slug.plan.md`: the `sdd` linter reads every `NNNN-*.md` directly inside `specs/` as a spec and reports the plan as `duplicate-id` (error) plus `section-expected` and `updated-missing` warnings. Subdirectories of `specs/` are not scanned, which is why `specs/plans/` is safe.
 6. In the plan, cite the spec's contract rather than copying it: reference `spec NNNN` for every table, signature, and status definition.
 7. Confirm the plan with the user in one round of at most 5 decisions covering only the sequencing choices that actually matter (flag strategy, migration order, shippable slices, test-first scope).
 8. Build a task/AC coverage table and look for holes: any AC that no task satisfies is a hole in the plan and must be fixed before you finish.
@@ -41,7 +41,7 @@ Produce the task breakdown for one `Approved` spec, with every task traced to th
 
 ## Outputs
 
-- `specs/NNNN-slug.plan.md` (or the project's configured plan path) with `authority: spec NNNN` at the top.
+- `specs/plans/NNNN-slug.plan.md` (or the project's configured plan path) with `authority: spec NNNN` at the top.
 - A task list in dependency order, each task carrying its AC ids, verification command, and S/M/L size.
 - A task/AC coverage table, with every AC mapped to at least one task.
 - The sequencing risks and flags, and the open sequencing decisions the user resolved.

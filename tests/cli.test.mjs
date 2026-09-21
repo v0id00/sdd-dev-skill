@@ -173,6 +173,28 @@ test('sdd doctor validates the bundled skills', async () => {
   assert.ok(report.codexSkillListChars < 8000)
 })
 
+test('companion files in specs/ subdirectories are not read as specs', async () => {
+  const dir = await tmpProject()
+  await cli(['init'], dir)
+  await cli(['new', 'Retry budget'], dir)
+  await fs.mkdir(path.join(dir, 'specs/plans'), { recursive: true })
+  await fs.mkdir(path.join(dir, 'specs/evidence'), { recursive: true })
+  await fs.writeFile(path.join(dir, 'specs/plans/0001-retry-budget.plan.md'), '# 0001 — plan\n\n- **Status:** Draft\n\n## Purpose\n\nplan\n\n## Acceptance Criteria\n\n- [ ] AC1: task\n')
+  await fs.writeFile(path.join(dir, 'specs/evidence/0001-verify.md'), '# evidence\n\n```\n$ npm test\nok\n```\n')
+  await cli(['index'], dir)
+  const lint = await cli(['lint', '--json', '--no-cache'], dir)
+  const parsed = JSON.parse(lint.stdout)
+  assert.equal(parsed.scanned, 1, 'only the real spec is scanned')
+  assert.equal(parsed.errors, 0, JSON.stringify(parsed.issues))
+  const stats = JSON.parse((await cli(['stats', '--json', '--no-cache'], dir)).stdout)
+  assert.equal(stats.total, 1)
+
+  // the flat layout is the mistake this convention exists to prevent
+  await fs.rename(path.join(dir, 'specs/plans/0001-retry-budget.plan.md'), path.join(dir, 'specs/0001-retry-budget.plan.md'))
+  const flat = JSON.parse((await cli(['lint', '--json', '--no-cache'], dir)).stdout)
+  assert.ok(flat.issues.some((i) => i.rule === 'duplicate-id'), 'a flat plan file is caught as a duplicate id')
+})
+
 test('unknown commands and tools exit 2', async () => {
   const dir = await tmpProject()
   assert.equal((await cli(['nope'], dir)).code, 2)

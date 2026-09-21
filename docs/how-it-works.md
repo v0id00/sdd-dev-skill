@@ -34,6 +34,8 @@ Everything else in this library is a mechanism for keeping that rule true:
 
 File name `NNNN-slug.md`, 4-digit zero-padded, sequential, never reused, and the number must match the heading. Ids are cheap; traceability is not.
 
+Companion files go in subdirectories — `specs/plans/NNNN-slug.plan.md`, `specs/evidence/NNNN-slug.verify.md` — because the linter scans the top level of `specs/` only and would read a flat plan as a competing spec.
+
 ## The loop, and why the order matters
 
 ```

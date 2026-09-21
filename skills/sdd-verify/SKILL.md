@@ -31,7 +31,7 @@ metadata:
 3. Run the proofs for real. Capture the exact command and the relevant output lines.
 4. Tick only the ACs whose evidence you actually produced: `- [ ] AC1:` becomes `- [x] AC1:`.
 5. For any failing or unprovable AC: leave it unticked, record the actual output, and keep the spec `Approved` (revert it if it was already flipped). Never soften the AC text to make it pass.
-6. Optionally append a verification log block to the spec, or write `specs/NNNN-slug.verify.md`, containing the command and raw output excerpts — never a summary of what you believe happened.
+6. Optionally append a verification log block to the spec, or write `specs/evidence/NNNN-slug.verify.md`, containing the command and raw output excerpts — never a summary of what you believe happened. Evidence files live in `specs/evidence/`; a flat `specs/NNNN-slug.verify.md` is read as a spec by the linter and trips `duplicate-id`.
 7. When every AC is ticked and proven: change `- **Status:** Approved` to `Implemented`, bump `- **Updated:**` to today, add a Decision Log row, then run `sdd lint --verbose` (expect 0 errors, especially `implemented-unchecked`) and `sdd index`.
 8. Report the evidence table and the `sdd stats` counts.
 

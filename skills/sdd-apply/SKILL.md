@@ -13,7 +13,7 @@ metadata:
 ## When to use
 
 - A spec is `Approved` and someone asked for the behavior to exist in code.
-- A plan (`specs/NNNN-slug.plan.md`) was accepted and implementation should start.
+- A plan (`specs/plans/NNNN-slug.plan.md`) was accepted and implementation should start.
 - An `Implemented` spec has an approved amendment that adds or changes behavior.
 - Resuming partially-finished work on an approved spec.
 - Do NOT load this for a `Draft` spec — route to `sdd-interview` (unfinished) or `sdd-review` (needs a decision) instead.
@@ -22,7 +22,7 @@ metadata:
 
 - The target spec `specs/NNNN-slug.md`, read in full.
 - Its `- **Status:**` line: must be `Approved`, or `Implemented` with an approved amendment.
-- Its `## References` and, if present, the subordinate plan `specs/NNNN-slug.plan.md`.
+- Its `## References` and, if present, the subordinate plan `specs/plans/NNNN-slug.plan.md`.
 - The project's real verification command (test runner, build, linter) as the repo defines it.
 
 ## Procedure
@@ -39,7 +39,7 @@ metadata:
 ## Outputs
 
 - Code and tests satisfying the spec's ACs, in the smallest coherent diff.
-- `specs/NNNN-slug.plan.md` updated as tasks complete, if a plan exists.
+- `specs/plans/NNNN-slug.plan.md` updated as tasks complete, if a plan exists.
 - A short report: files changed, AC coverage, remaining work, `sdd-update` follow-ups.
 
 ## Guardrails

@@ -85,6 +85,17 @@ Tables/fields/types with constraints. Write `n/a` when there is none.
 
 Required sections: `## Purpose`, `## Acceptance Criteria`. The rest are strongly expected; `sdd lint` warns when missing.
 
+## Companion files
+
+Plans and evidence live in subdirectories, never flat next to a spec:
+
+```
+specs/plans/NNNN-slug.plan.md        tasks for an approved spec (authority: spec NNNN)
+specs/evidence/NNNN-slug.verify.md   command output proving the ACs
+```
+
+`sdd` scans the top level of `specs/` only, so subdirectory files are ignored. A flat `specs/NNNN-slug.plan.md` is parsed as a spec and reported as `duplicate-id`.
+
 ## Reading order for an agent
 
 1. This file (rules + format).
